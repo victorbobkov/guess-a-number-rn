@@ -1,24 +1,40 @@
 import React from 'react'
-import {View, Text, StyleSheet, TextInput, Button} from 'react-native'
+import { View, Text, StyleSheet, Button } from 'react-native'
+import Card from '../components/Card'
+import Colors from '../constants/colors'
+import Input from '../components/Input'
 
 const StartGameScreen = (props) => {
    return (
       <View style={styles.screen}>
          <Text style={styles.title}>Начать новую игру!</Text>
-         <View style={styles.inputContainer}>
+         <Card style={styles.inputContainer}>
             <Text>Выбери число</Text>
-            <TextInput />
+            <Input
+               style={styles.input}
+               blurOnSubmit
+               autoCapitalize='none'
+               autoCorrect={false}
+               keyboardType='number-pad'
+               maxLength={2}
+            />
             <View style={styles.buttonContainer}>
-               <Button
-                  title='Сбросить'
-                  onPress={() => {}}
-               />
-               <Button
-                  title='Подтвердить'
-                  onPress={() => {}}
-               />
+               <View style={styles.button}>
+                  <Button
+                     title='Сбросить'
+                     color={Colors.secondary}
+                     onPress={() => {}}
+                  />
+               </View>
+               <View style={styles.button}>
+                  <Button
+                     title='Подтвердить'
+                     color={Colors.primary}
+                     onPress={() => {}}
+                  />
+               </View>
             </View>
-         </View>
+         </Card>
       </View>
    )
 }
@@ -38,22 +54,19 @@ const styles = StyleSheet.create({
       width: 300,
       maxWidth: '80%',
       alignItems: 'center',
-      backgroundColor: 'white',
-      padding: 10,
-      borderRadius: 10,
-      // iOS
-      shadowColor: 'black',
-      shadowOffset: { width: 0, height: 2 },
-      shadowRadius: 6,
-      shadowOpacity: 0.26,
-      // Android
-      elevation: 7,
    },
    buttonContainer: {
       flexDirection: 'row',
       width: '100%',
       justifyContent: 'space-between',
-      paddingHorizontal: 15,
+      paddingHorizontal: 2,
+   },
+   button: {
+      width: 120,
+   },
+   input: {
+      width: 50,
+      textAlign: 'center',
    }
 })
 
