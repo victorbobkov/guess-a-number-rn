@@ -5,7 +5,8 @@ import {
    Button,
    StyleSheet,
    TouchableWithoutFeedback,
-   Keyboard
+   Keyboard,
+   Alert
 } from 'react-native'
 import Card from '../components/Card'
 import Colors from '../constants/colors'
@@ -13,9 +14,36 @@ import Input from '../components/Input'
 
 const StartGameScreen = (props) => {
    const [enteredValue, setEnteredValue] = useState('')
+   const [confirmed, setConfirmed] = useState(false)
+   const [selectedNumber, setSelectedNumber] = useState()
 
    const numberInputHandler = (inputText) => {
       setEnteredValue(inputText.replace(/[^0-9]/g, ''))
+   }
+
+   const resetInputHandler = () => {
+      setEnteredValue('')
+      setEnteredValue(false)
+   }
+
+   const confirmInputHandler = () => {
+      const chosenNumber = parseInt(enteredValue)
+      if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
+         Alert.alert(
+            'Некорректное число!',
+            'Выбери число от 1 до 99',
+            [{text: 'Окей', style: 'destructive', onPress: resetInputHandler}])
+         return
+      }
+      setConfirmed(true)
+      setSelectedNumber(chosenNumber)
+      setEnteredValue('')
+   }
+
+   let confirmedOutput
+
+   if (confirmed) {
+      confirmedOutput = <Text>Выбранное число: {selectedNumber}</Text>
    }
 
    return (
@@ -41,18 +69,19 @@ const StartGameScreen = (props) => {
                      <Button
                         title='Сбросить'
                         color={Colors.secondary}
-                        onPress={() => {}}
+                        onPress={resetInputHandler}
                      />
                   </View>
                   <View style={styles.button}>
                      <Button
                         title='Подтвердить'
                         color={Colors.primary}
-                        onPress={() => {}}
+                        onPress={confirmInputHandler}
                      />
                   </View>
                </View>
             </Card>
+            {confirmedOutput}
          </View>
       </TouchableWithoutFeedback>
    )
