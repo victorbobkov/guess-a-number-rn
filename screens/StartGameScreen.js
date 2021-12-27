@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import {
    View,
-   Text,
    Button,
    StyleSheet,
    TouchableWithoutFeedback,
@@ -12,6 +11,8 @@ import Card from '../components/Card'
 import Colors from '../constants/colors'
 import Input from '../components/Input'
 import NumberContainer from '../components/NumberContainer'
+import BodyText from '../components/BodyText'
+import TitleText from '../components/TitleText'
 
 const StartGameScreen = (props) => {
    const [enteredValue, setEnteredValue] = useState('')
@@ -47,7 +48,7 @@ const StartGameScreen = (props) => {
    if (confirmed) {
       confirmedOutput = (
          <Card style={styles.summaryContainer}>
-            <Text>Выбранное число</Text>
+            <BodyText>Выбранное число</BodyText>
             <NumberContainer>
                {selectedNumber}
             </NumberContainer>
@@ -64,9 +65,9 @@ const StartGameScreen = (props) => {
          Keyboard.dismiss()
       }}>
          <View style={styles.screen}>
-            <Text style={styles.title}>Начать новую игру!</Text>
+            <TitleText style={styles.title}>Начать новую игру!</TitleText>
             <Card style={styles.inputContainer}>
-               <Text>Выбери число</Text>
+               <BodyText>Выбери число</BodyText>
                <Input
                   style={styles.input}
                   blurOnSubmit
@@ -110,7 +111,6 @@ const styles = StyleSheet.create({
    title: {
       fontSize: 20,
       marginVertical: 10,
-      fontFamily: 'open-sans-bold'
    },
    inputContainer: {
       width: 300,
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
    summaryContainer: {
       marginTop: 20,
       alignItems: 'center',
-   }
+   },
 })
 
 export default StartGameScreen

@@ -1,12 +1,23 @@
 import React from 'react'
-import {View, Text, StyleSheet, Button} from 'react-native'
+import { View, Text, StyleSheet, Button, Image } from 'react-native'
+import BodyText from '../components/BodyText'
+import TitleText from '../components/TitleText'
 
 const GameOverScreen = (props) => {
    return (
       <View style={styles.screen}>
-         <Text>Игра окончена!</Text>
-         <Text>Количество раундов: {props.roundsNumber}</Text>
-         <Text>Загаданное число: {props.userNumber}</Text>
+         <TitleText>Игра окончена!</TitleText>
+         <View style={styles.imageContainer}>
+            <Image
+               fadeDuration={1000}
+               // source={require('../assets/success.png')}
+               source={{uri: 'https://cdn.pixabay.com/photo/2016/05/05/23/52/mountain-summit-1375015_960_720.jpg'}}
+               style={styles.image}
+               resizeMode='cover'
+            />
+         </View>
+         <BodyText>Количество раундов: {props.roundsNumber}</BodyText>
+         <BodyText>Загаданное число: {props.userNumber}</BodyText>
          <Button title='НОВАЯ ИГРА' onPress={props.onRestart} />
       </View>
    )
@@ -17,7 +28,20 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center'
-   }
+   },
+   imageContainer: {
+      width: 300,
+      height: 300,
+      borderRadius: 150,
+      borderWidth: 3,
+      borderColor: 'black',
+      overflow: 'hidden',
+      marginVertical: 30
+   },
+   image: {
+      width: '100%',
+      height: '100%',
+   },
 })
 
 export default GameOverScreen
