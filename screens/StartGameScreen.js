@@ -8,11 +8,12 @@ import {
    Alert
 } from 'react-native'
 import Card from '../components/Card'
-import Colors from '../constants/colors'
 import Input from '../components/Input'
 import NumberContainer from '../components/NumberContainer'
 import BodyText from '../components/BodyText'
 import TitleText from '../components/TitleText'
+import MainButton from '../components/MainButton'
+import Colors from '../constants/colors'
 
 const StartGameScreen = (props) => {
    const [enteredValue, setEnteredValue] = useState('')
@@ -52,10 +53,9 @@ const StartGameScreen = (props) => {
             <NumberContainer>
                {selectedNumber}
             </NumberContainer>
-            <Button
-               title="НАЧАТЬ ИГРУ"
+            <MainButton
                onPress={() => props.onStartGame(selectedNumber)}
-            />
+            >НАЧАТЬ ИГРУ</MainButton>
          </Card>
       )
    }
