@@ -26,19 +26,6 @@ const GameOverScreen = (props) => {
             />
          </View>
          <View style={styles.resultContainer}>
-            {/*<BodyText>*/}
-            {/*   Компьютеру понадобилось*/}
-            {/*   <Text*/}
-            {/*      style={styles.highlight}> {props.roundsNumber}*/}
-            {/*   </Text> {rounds},*/}
-            {/*</BodyText>*/}
-            {/*<BodyText>*/}
-            {/*   чтобы отгадать число*/}
-            {/*   <Text*/}
-            {/*      style={styles.highlight}> {props.userNumber}*/}
-            {/*   </Text>*/}
-            {/*</BodyText>*/}
-
             <BodyText style={styles.resultText}>
                Компьютеру понадобилось{' '}
                <Text style={styles.highlight}>{props.roundsNumber}</Text> {rounds},
