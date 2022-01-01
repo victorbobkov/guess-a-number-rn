@@ -1,5 +1,11 @@
 import React from 'react'
-import { View, StyleSheet, Image, Text } from 'react-native'
+import { View,
+   StyleSheet,
+   Image,
+   Text,
+   Dimensions,
+   ScrollView
+} from 'react-native'
 import BodyText from '../components/BodyText'
 import TitleText from '../components/TitleText'
 import MainButton from '../components/MainButton'
@@ -16,30 +22,31 @@ const GameOverScreen = (props) => {
    }
 
    return (
-      <View style={styles.screen}>
-         <TitleText>Игра окончена!</TitleText>
-         <View style={styles.imageContainer}>
-            <Image
-               fadeDuration={1000}
-               source={require('../assets/success.png')}
-               style={styles.image}
-               resizeMode='cover'
-            />
-         </View>
-         <View style={styles.resultContainer}>
-            <BodyText style={styles.resultText}>
-               Смартфону понадобилось{' '}
-               <Text style={styles.highlight}>{props.roundsNumber}</Text> {rounds},
-               чтобы отгадать число{' '}
-               <Text style={styles.highlight}>{props.userNumber}</Text>
-            </BodyText>
-         </View>
+      <ScrollView>
+         <View style={styles.screen}>
+            <TitleText>Игра окончена!</TitleText>
+            <View style={styles.imageContainer}>
+               <Image
+                  fadeDuration={1000}
+                  source={require('../assets/success.png')}
+                  style={styles.image}
+                  resizeMode='cover'
+               />
+            </View>
+            <View style={styles.resultContainer}>
+               <BodyText style={styles.resultText}>
+                  Смартфону понадобилось{' '}
+                  <Text style={styles.highlight}>{props.roundsNumber}</Text> {rounds},
+                  чтобы отгадать число{' '}
+                  <Text style={styles.highlight}>{props.userNumber}</Text>
+               </BodyText>
+            </View>
 
-
-         <MainButton onPress={props.onRestart}>
-            НОВАЯ ИГРА
-         </MainButton>
-      </View>
+            <MainButton onPress={props.onRestart}>
+               НОВАЯ ИГРА
+            </MainButton>
+         </View>
+      </ScrollView>
    )
 }
 
@@ -50,13 +57,13 @@ const styles = StyleSheet.create({
       alignItems: 'center'
    },
    imageContainer: {
-      width: 300,
-      height: 300,
-      borderRadius: 150,
+      width: Dimensions.get('window').width * 0.7,
+      height: Dimensions.get('window').width * 0.7,
+      borderRadius: Dimensions.get('window').width * 0.7 / 2,
       borderWidth: 3,
       borderColor: 'black',
       overflow: 'hidden',
-      marginVertical: 30
+      marginVertical: Dimensions.get('window').height / 30
    },
    image: {
       width: '100%',
@@ -67,12 +74,12 @@ const styles = StyleSheet.create({
       fontFamily: 'open-sans-bold',
    },
    resultContainer: {
-      width: '80%',
-      marginVertical: 10
+      marginHorizontal: 30,
+      marginVertical: Dimensions.get('window').height / 60
    },
    resultText: {
       textAlign: 'center',
-      fontSize: 15
+      fontSize: Dimensions.get('window').height < 400 ? 16 : 20
    },
 })
 
